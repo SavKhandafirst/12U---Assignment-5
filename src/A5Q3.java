@@ -12,6 +12,9 @@ import java.util.Stack;
 public class A5Q3 {
 
     public boolean inLang(String word) {
+        // SIDE NOTE: ASSUMING THAT THERE MUST BE A 
+        // MINIMUM OF ONE LETTER BEFORE AND AFTER THE DOLLAR SIGN  
+
         // make a char stack
         Stack<Character> stackOne = new Stack<Character>();
 
@@ -45,8 +48,7 @@ public class A5Q3 {
                 // copy onto the char array
                 stackListOne[i] = word.charAt(i);
                 // push onto stack
-                stackOne.push(stackListOne[i]);
-                System.out.println(stackListOne[i]);
+                stackOne.push(stackListOne[i]);                
             }
 
             // create a count variable to go through the word
@@ -80,5 +82,14 @@ public class A5Q3 {
 
         // system out
         System.out.println(test.inLang("fish$hsif"));
+        
+        // system out
+        System.out.println(test.inLang("y$y"));
+        
+        // system out
+        System.out.println(test.inLang("yuh$yuh"));
+        
+        // system out
+        System.out.println(test.inLang("a$"));
     }
 }
