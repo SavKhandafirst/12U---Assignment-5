@@ -48,7 +48,7 @@ public class A5Q2 {
                 temporary[posAfter] = array[posAfter - 1];
             }
 
-            // now copy the fully formed temporary array beack into the original array // forloop
+            // now copy the fully formed temporary array back into the original array 
             array = temporary;
 
         } else {
@@ -71,7 +71,7 @@ public class A5Q2 {
                 temporary[posAfter] = array[posAfter - 1];
             }
 
-            // now copy the fully formed temporary array beack into the original array // forloop
+            // now copy the fully formed temporary array back into the original array
             array = temporary;
 
         }
@@ -86,55 +86,72 @@ public class A5Q2 {
         return numItems == 0;
     }
 
-    public int get(int position) {
-        IntNode node = head;
-
-        // move the number of times
-        for (int i = 0; i < position; i++) {
-            node = node.getNext();
+    public int get(int placement) {
+        // making sure that placement only returned when it exists
+        if (numItems > placement) {
+            // return value requested
+            return array[placement];
+        }// the user asked for a the value at a postion that does notexist
+        else {
+            // return a value that does not make sense as they have asked for the value of a position that does not exist
+            return 10000000;
         }
-        return node.getNum();
     }
 
-    public void remove(int number) {
+    public void remove(int index) {
+        // if one item in the list
+        if (numItems == 1) {
+            // decrease by one
+            numItems--;
+            // if no items in the array
+        } else if (numItems == 0) {
+            // that means we cant remove anythin
+            System.out.println("Nothing to Remove!");
+        } else if (index + 1 == numItems) {
+            numItems--;
+        } else {
+            // make a temporary array to copy over
+            int[] temporary = new int[array.length];
 
-//        // the method will only function if there are even any numbers to remove
-//        if (numItems != 0) {
-//
-//            // set node to head
-//            IntNode node = head;
-//
-//            // if its the first number being removed,
-//            // special process required
-//            // if the number asked for equals the head number
-//            if (numItems == node.getNum()) {
-//                // head is equal to the next number in the list
-//                head = head.getNext();
-//            }
-//
-//            // looping till the number is found that is being searched for
-//            while (number != node.getNext().getNum()) {
-//                node = node.getNext();
-//            }
-//
-//            // identified the number being removed
-//            IntNode removedNode = node.getNext();
-//
-//            // setting the next node
-//            node.setNext(node.getNext().getNext());
-//
-//            // removing the previous link
-//            removedNode.setNext(null);
-//
-//            // decrease
-//            numItems--;
-//        }
+            // actually copy them over
+            for (int i = 0; i < index; i++) {
+                temporary[i] = array[i];
+
+            }
+            // move the remanining content exluding the index removed
+            for (int i = index + 1; i < array.length - 1; i++) {
+                temporary[i - 1] = array[i];
+            }
+            // reformat the original array
+            array = temporary;
+        }
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Test the program
+        A5Q2 list = new A5Q2();
+        
+        list.add(0, 1);
+        list.add(1, 3);
+        list.add(2, 15);
+        
+        
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+        
+        list.remove(1);
+        
+        System.out.println(list.get(1));
+        
+        
+        
+        
+        
     }
+
 }
